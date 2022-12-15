@@ -1,0 +1,265 @@
+{
+    "swagger":"2.0",
+    "info":{
+       "version":"1.0.0",
+       "title":"SI Final Project",
+       "description":"API endpoints along with description using Swagger \n",
+       "license":{
+          "name":"Harsh Raval"
+       }
+    },
+    "basePath":"/",
+    "tags":[
+       {
+          "name":"Harsh Raval"
+       }
+    ],
+    "schemes":[
+       "http"
+    ],
+    "consumes":[
+       "application/json"
+    ],
+    "produces":[
+       "application/json"
+    ],
+    "paths":{
+        "/phraseextraction" : {
+            "post" : {
+                "tags" : [
+                    "Key Phrase Extraction"
+                ],
+                "description" : "Key Phrase Extraction is one of the features offered by Azure Cognitive Service for Language. \n Given a sentence, this key phrase extraction API will quickly identify and return a list covering the main concepts of the text.",
+                "parameters" : [
+                    {
+                        "in" : "body",
+                        "name" :"body",
+                        "description" : "This is request body object for Phrase Extraction.",
+                        "required" : true,
+                        "schema" : {
+                            "$ref" : "#/definitions/phraseextraction"
+                        }
+                    }
+                ],
+                "responses" : {
+                    "200" : {
+                        "description" : "Success",
+                        "schema" : {
+                            "$ref" : "#/definitions/phraseextractionresponse"
+                        }
+                    }
+                }
+            }
+        },
+        
+        "/entitylinking" : {
+            "post" : {
+                "tags" : [
+                    "Entity Linking"
+                ],
+                "description" : "Entity Linking is service which identifies key entities from the text and returns link to more information on Wikipedia.",
+                "parameters" : [
+                    {
+                        "in" : "body",
+                        "name" :"body",
+                        "description" : "This is request body object for Entity Linking.",
+                        "required" : true,
+                        "schema" : {
+                            "$ref" : "#/definitions/entitylinking"
+                        }
+                    }
+                ],
+                "responses" : {
+                    "200" : {
+                        "description" : "Success",
+                        "schema" : {
+                            "$ref" : "#/definitions/entitylinkingresponse"
+                        }
+                    }
+                }
+            }
+        },
+
+        "/entityrecognition" : {
+            "post" : {
+                "tags" : [
+                    "Entity Recognition"
+                ],
+                "description" : "Entity Recognition API Service will identify key entities from the text and returns categories of those entities.",
+                "parameters" : [
+                    {
+                        "in" : "body",
+                        "name" :"body",
+                        "description" : "This is the request body object for Entity Recognition.",
+                        "required" : true,
+                        "schema" : {
+                            "$ref" : "#/definitions/entityrecognition"
+                        }
+                    }
+                ],
+                "responses" : {
+                    "200" : {
+                        "description" : "Success",
+                        "schema" : {
+                            "$ref" : "#/definitions/entityrecognitionresponse"
+                        }
+                    }
+                }
+            }
+        }
+
+    },
+
+    "definitions": {
+        "phraseextraction" : {
+            "type" : "object",
+            "required" : [
+                "kind",
+                "parameters",
+                "analysisInput"
+            ],
+            "properties" : {
+                "kind" : {
+                    "type" : "string",
+                    "example" : "KeyPhraseExtraction"
+                },
+                "parameters" : {
+                    "properties" : {
+                        "modelVersion" : {
+                            "type" : "string",
+                            "example" : "latest"
+                        }
+                    }
+                },
+                "analysisInput" : {
+                    "properties" : {
+                        "documents": {
+                            "type" : "array",
+                            "items" : {
+                                "type" : "object",
+                                "properties" : {
+                                    "id" : {
+                                        "type" : "string",
+                                        "example" : "1"
+                                    },
+                                    "language" : {
+                                        "type" : "string",
+                                        "example" : "en"
+                                    },
+                                    "text" : {
+                                        "type" : "string",
+                                        "example" : "Dr. Smith has a very modern medical office, and she has great staff."
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "entitylinking" : {
+            "type" : "object",
+            "required" : [
+                "kind",
+                "parameters",
+                "analysisInput"
+            ],
+            "properties" : {
+                "kind" : {
+                    "type" : "string",
+                    "example" : "EntityLinking"
+                },
+                "parameters" : {
+                    "properties" : {
+                        "modelVersion" : {
+                            "type" : "string",
+                            "example" : "latest"
+                        }
+                    }
+                },
+                "analysisInput" : {
+                    "properties" : {
+                        "documents": {
+                            "type" : "array",
+                            "items" : {
+                                "type" : "object",
+                                "properties" : {
+                                    "id" : {
+                                        "type" : "string",
+                                        "example" : "1"
+                                    },
+                                    "language" : {
+                                        "type" : "string",
+                                        "example" : "en"
+                                    },
+                                    "text" : {
+                                        "type" : "string",
+                                        "example" : "Microsoft was founded by Bill Gates and Paul Allen on April 4, 1975."
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "entityrecognition":{
+            "type" : "object",
+            "required" : [
+                "kind",
+                "parameters",
+                "analysisInput"
+            ],
+            "properties" : {
+                "kind" : {
+                    "type" : "string",
+                    "example" : "EntityRecognition"
+                },
+                "parameters" : {
+                    "properties" : {
+                        "modelVersion" : {
+                            "type" : "string",
+                            "example" : "latest"
+                        }
+                    }
+                },
+                "analysisInput" : {
+                    "properties" : {
+                        "documents": {
+                            "type" : "array",
+                            "items" : {
+                                "type" : "object",
+                                "properties" : {
+                                    "id" : {
+                                        "type" : "string",
+                                        "example" : "1"
+                                    },
+                                    "language" : {
+                                        "type" : "string",
+                                        "example" : "en"
+                                    },
+                                    "text" : {
+                                        "type" : "string",
+                                        "example" : "I had a wonderful trip to Seattle last week."
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "phraseextractionresponse" : {
+            "type" : "array"
+        },
+        "entitylinkingresponse" : {
+            "type" : "array"
+        },
+        "entityrecognitionresponse" : {
+            "type" : "array"
+        }
+
+       }   
+    
+    }
+ 
